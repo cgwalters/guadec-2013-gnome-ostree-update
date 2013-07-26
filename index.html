@@ -84,6 +84,29 @@
 </article>
 
 <article>
+<h3>OSTree</h3>
+<ul>
+  <li>"git for operating system binaries"</li>
+  <li><b>Atomically</b> manage set of readonly, versioned, bootable filesystem trees</li>
+  <li>Sits between image-based deployment and package-based deployment;
+    Unlike images, handles /etc.  Trades flexibility of packages for image speed/reliability.</li>
+  <li>Block storage/filesystem independent (but transparently uses some BTRFS features)</li>
+  <li>Install Fedora 19, and Fedora 20 in parallel (do or do not share /home)</li>
+  <li>Have 500 builds installed, bisect across them</li>
+  <li>Update virtual guests while they're offline</li>
+</ul>
+</article>
+
+<article>
+<h3>gnome-ostree</h3>
+<ul>
+  <li>manifest.json: List of git repositories to build in order (after OE stage)</li>
+  <li>Builds any git revision at any time (tagging, removal)</li>
+  <li>Outputs 4 variants: runtime, runtime-debug, devel, devel-debug</li>
+</ul>
+</article>
+
+<article>
 <h3>Future: FOSS Apps</h3>
 <ul>
   <li>Two kinds of app: FOSS and proprietary</li>
@@ -105,7 +128,7 @@
 <h3>Future: systemd for user session, per-application containers</h3>
 <ul>
   <li>cgroup-for-application would make GNOME 3 tech significantly less of a hack</li>
-  <li>Security is extremely hard</li>
+  <li>Try out security here: SELinux, Portals</li>
 </ul>
 </article>
 
@@ -123,6 +146,14 @@
   <li>ABI verification for GTK+ and dependency tree</li>
   <li>Even more core testing, integrated core + app testing</li>
   <li>Shrink the core, like sudo -> pkexec: Stub out NSPR for GLib</li>
+</ul>
+</article>
+
+<article>
+<h3>More</h3>
+<ul>
+  <li><a href="http://live.gnome.org/GnomeOSTree">https://wiki.gnome.org/GnomeOSTree</a></li>
+  <li><a href="https://mail.gnome.org/archives/ostree-list/">https://mail.gnome.org/archives/ostree-list/</a></li>
 </ul>
 </article>
 
