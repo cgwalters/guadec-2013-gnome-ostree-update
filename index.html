@@ -15,12 +15,114 @@
 </article>
 
 <article>
-<h3>Why?</h3>
+<h3>Why am I here?</h3>
 
 <ul>
   <li>Free Software</li>
-  <li>Fun </li>
+  <li>Fun</li>
   <li>Red Hat Enterprise Linux</li>
+</ul>
+</article>
+
+<article>
+<h3>Why is GNOME here?</h3>
+<ul>
+  <li>We promote software freedom</li>
+  <li>Independent, Free, Connected, People-focused</li>
+</ul>
+</article>
+
+<article>
+<h3>Connected to an Ecosystem</h3>
+<ul>
+  <li>[Insert Venn Diagram]</li>
+  <li>Mozilla, Red Hat Enterprise Linux, Ubuntu, Debian, Fedora,
+      Tizen, OpenSUSE, etc...</li>
+</ul>
+</article>
+
+<article>
+<h3>gnome-ostree high level</h3>
+<ul>
+  <li>Try git master of "core" system up to gnome-shell, plus a few apps, as a virtual guest</li>
+  <li>Built <b>and tested</b> continuously</li>
+  <li>Over 200 git repositories (GNOME, X.org, NetworkManager, systemd, etc.)</li>
+  <li>Base system built from OpenEmbedded (periodic rebase)</li>
+  <li>Only targets <b>virtualized environments</b></li>
+  <li><b>No security updates</b></li>
+</ul>
+</article>
+
+<article>
+<h3>Core values</h3>
+<ul>
+  <li>Orbit GTK+/GLib</li>
+  <li>High speed continuous integration (not packaging)</li>
+  <li>Software engineering (not packaging)</li>
+  <li>OS, Application, "OS Extension" split (not packaging)</li>
+</ul>
+</article>
+
+<article>
+<h3>Non-goals</h3>
+<ul>
+  <li>Aggregate all the world's distributable software with metadata
+      and shell scripts that run as root attached</li>
+  <li>Enterprise/SOHO features (e.g. NFS/SMB, Active Directory integration)</li>
+  <li>Be Debian/Red Hat Enterprise Linux</li>
+</ul>
+</article>
+
+<article>
+<h3>Concrete achievements</h3>
+<ul>
+  <li>Reliably building: Dec 2012, smoketest: Jan 2013, integrationtest: Apr 2013</li>
+  <li>Time from commit to clean booting ~3-4 minutes, and going down</li>
+  <li>Upgrades are fully atomic</li>
+  <li>glib, gtk+, clutter, json-glib, ostree, gjs and more (> 350) unit-type tests under automation</li>
+</ul>
+</article>
+
+<article>
+<h3>Future: FOSS Apps</h3>
+<ul>
+  <li>Two kinds of app: FOSS and proprietary</li>
+  <li>Intermediary still important: "built by GNOME"</li>
+  <li>Do CI for core GNOME apps in GNOME; "application source" server</li>
+  <li>Peer review status</li>
+</ul>
+</article>
+
+<article>
+<h3>Future? Proprietary Apps</h3>
+<ul>
+  <li>Requires ABI definition</li>
+  <li>Security is extremely hard</li>
+</ul>
+</article>
+
+<article>
+<h3>Future: systemd for user session, per-application containers</h3>
+<ul>
+  <li>cgroup-for-application would make GNOME 3 tech significantly less of a hack</li>
+  <li>Security is extremely hard</li>
+</ul>
+</article>
+
+<article>
+<h3>Future: Unified OS extensions and Shell extensions</h3>
+<ul>
+  <li>shell extension -&gt; "user" extension</li>
+  <li>system extensions: proprietary drivers,fonts</li>
+</ul>
+</article>
+
+<article>
+<h3>Future: Core Quality</h3>
+<ul>
+  <li>ABI verification for GTK+ and dependency tree</li>
+  <li>Even more core testing, integrated core + app testing</li>
+  <li>Shrink the core, like sudo -> pkexec: Stub out NSPR for GLib</li>
 </ul>
 </article>
 
