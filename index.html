@@ -56,7 +56,7 @@
 <article>
 <h3>Core values</h3>
 <ul>
-  <li>Orbit GTK+/GLib</li>
+  <li>Tech: GTK+GLib</li>
   <li>High speed continuous integration (not packaging)</li>
   <li>Software engineering (not packaging)</li>
   <li>OS, Application, "OS Extension" split (not packaging)</li>
@@ -107,7 +107,7 @@
 </article>
 
 <article>
-<h3>gnome-ostree</h3>
+<h3>Layered on top: gnome-ostree</h3>
 <ul>
   <li>manifest.json: List of git repositories to build in order (after OE stage)</li>
   <li>Builds any git revision at any time (tagging, removal);
@@ -115,6 +115,29 @@
   <li>Writes to OSTree repository: <b>6316</b> builds, occupying a mere 60GB</li>
   <li>Outputs 4 variants: runtime, runtime-debug, devel, devel-debug</li>
   <li>3 stages: buildmaster, smoketested, integrated (more to come)</li>
+</ul>
+</article>
+
+<article>
+<h3>From commit to your VM</h3>
+<ul>
+  <li>Push notification git.gnome.org -&gt; spinner.gnome.org [~instant]</li>
+  <li>gnome-ostree autobuilder does a "resolve" [~instant]</li>
+  <li>build creates container, runs "autogen/configure/make/make install DESTDIR" [variable]</li>
+  <li>Result stored in OSTree repo as e.g. "gnome-ostree/components/glib/x86_64" [seconds]</li>
+  <li>Builder "unions" everything listed in manifest, generates -runtime, -devel-debug etc. trees [1-2 minutes]</li>
+  <li>You can download now</li>
+</ul>
+</article>
+
+<article>
+<h3>From build to testing</h3>
+<ul>
+  <li>"builddisks" use libguestfs to open cached disk image from the <b>host</b></li>
+  <li>Incremental update while <b>offline</b></li>
+  <li>"smoketest" makes new overlay disk image with testing bits (autologin, export journal)</li>
+  <li>"smoketest" watches journal output on the host, checks for required/bad MESSAGE_IDs</li>
+  <li>"integrationtest" runs all installed tests</li>
 </ul>
 </article>
 
