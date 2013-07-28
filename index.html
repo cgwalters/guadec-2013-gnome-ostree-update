@@ -84,14 +84,22 @@
 </article>
 
 <article>
-<h3>OSTree</h3>
+<h3>OSTree: git for operating system binaries</h3>
 <ul>
-  <li>"git for operating system binaries"</li>
   <li><b>Atomically</b> manage set of readonly, versioned, bootable filesystem trees</li>
+  <li>Really simple: uses plain old Unix hardlinks for deduplication, "checkouts" are readonly</li>
   <li>Sits between image-based deployment and package-based deployment;
-    Unlike images, handles /etc.  Trades flexibility of packages for image speed/reliability.</li>
-  <li>Block storage/filesystem independent (but transparently uses some BTRFS features)</li>
-  <li>Install Fedora 19, and Fedora 20 in parallel (do or do not share /home)</li>
+    Unlike images, handles /etc.  Drops flexibility of packages to gain image speed/reliability.</li>
+  <li>Block storage/filesystem independent (works on top of BTRFS, ext4, XFS+LVM)</li>
+  <li>Has an "archive-z2" repository format that is designed for serving via static HTTP</li>
+  <li>Can replicate pre-built trees via HTTP, or trees can be generated locally</li>
+</ul>
+</article>
+
+<article>
+<h3>OSTree Magic Tricks</h3>
+<ul>
+  <li>Install Fedora 19, and Fedora 20, Debian in parallel (do or do not share /home)</li>
   <li>Have 500 builds installed, bisect across them</li>
   <li>Update virtual guests while they're offline</li>
   <li>Could go underneath package systems, internal shared library evolving</li>
