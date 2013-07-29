@@ -143,7 +143,9 @@
 <ul>
   <li>Push notification git.gnome.org -&gt; spinner.gnome.org [~instant]</li>
   <li>gnome-ostree autobuilder does a "resolve" [1-2 seconds]</li>
-  <li>"build" only rebuilds changed git repos, runs clean "autogen/configure/make/make install DESTDIR" cycle [variable]</li>
+  <li>"build" only rebuilds changed git repos</li>
+  <li>Assemble buildroot [~15-20 seconds]</li>
+  <li>Clean "autogen/configure/make/make install DESTDIR" cycle [variable]</li>
   <li>Result stored in OSTree repo as e.g. "gnome-ostree/components/glib/x86_64" [seconds]</li>
   <li>Builder "unions" everything listed in manifest, generates -runtime, -devel-debug etc. trees [1-2 minutes]</li>
   <li>You can download now (just changed files)</li>
@@ -157,7 +159,7 @@
   <li>Incremental update while <b>offline</b></li>
   <li>"smoketest" makes new overlay qcow2 image with testing bits (autologin, export journal)</li>
   <li>"smoketest" watches journal output on the host, checks for required/bad MESSAGE_IDs (required: gnome-session, bad: coredump)</li>
-  <li>"integrationtest" runs <b>all</b> installed tests</li>
+  <li>"integrationtest" runs <b>all</b> installed tests (~3 minutes)</li>
 </ul>
 </article>
 
