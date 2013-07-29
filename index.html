@@ -35,9 +35,9 @@
 <article>
 <h3>Connected to an Ecosystem</h3>
 <ul>
-  <li>[Insert Venn Diagram]</li>
   <li>Mozilla, Red Hat Enterprise Linux, Ubuntu, Debian, Fedora,
       Tizen, OpenEmbedded, OpenSUSE, etc...</li>
+  <li>[Insert Venn Diagram]</li>
 </ul>
 </article>
 
@@ -57,9 +57,8 @@
 <h3>Core values</h3>
 <ul>
   <li>Tech: GTK+GLib</li>
-  <li>High speed continuous integration (not packaging)</li>
-  <li>Software engineering (not packaging)</li>
-  <li>OS, Application, "OS Extension" split (not packaging)</li>
+  <li>Software engineering</li>
+  <li>OS, Application, "OS Extension" split</li>
 </ul>
 </article>
 
@@ -84,7 +83,7 @@
 </article>
 
 <article>
-<h3>OSTree: git for operating system binaries</h3>
+<h3><a href="https://live.gnome.org/OSTree">OSTree</a>: git for operating system binaries</h3>
 <ul>
   <li><b>Atomically</b> manage set of readonly, versioned, bootable filesystem trees</li>
   <li>Really simple: uses plain old Unix hardlinks for deduplication, "checkouts" are readonly</li>
@@ -99,7 +98,7 @@
 <article>
 <h3>OSTree Magic Tricks</h3>
 <ul>
-  <li>Install Fedora 19, and Fedora 20, Debian in parallel (do or do not share /home)</li>
+  <li>Install Fedora 19, and Fedora 20, Debian in parallel (separate /var, do or do not share /home)</li>
   <li>Have 500 builds installed, bisect across them</li>
   <li>Update virtual guests while they're offline</li>
   <li>Could go underneath package systems, internal shared library evolving</li>
@@ -107,14 +106,35 @@
 </article>
 
 <article>
-<h3>Layered on top: gnome-ostree</h3>
+<h3>Layered on top: <a href="https://live.gnome.org/GnomeOSTree">gnome-ostree</a></h3>
 <ul>
   <li>manifest.json: List of git repositories to build in order (after OE stage)</li>
-  <li>Builds any git revision at any time (tagging, removal);
+  <li>Builds <b>any</b> git revision at any time (tagging, removal);
     instantly responds to pushes to gnome-ostree git repository</li>
-  <li>Writes to OSTree repository: <b>6316</b> builds, occupying a mere 60GB</li>
+</ul>
+<pre>
+  {"src": "gnome:gnome-common",
+   "component": "devel"},
+  ...
+  {"src": "gnome:libxml2"},
+  ...
+  {"src": "git:git://anongit.freedesktop.org/harfbuzz",
+   "tag": "7d395c2a255a44fd0d65365ea9b525dba70c062c"},
+  ...
+  {"src": "fd-spice:spice",
+   "patches": ["spice-no-builddir.patch",
+               "spice-stack-protector.patch"],
+   "config-opts": ["--disable-smartcard"]},
+</pre>
+</article>
+
+<article>
+<h3>gnome-ostree output</h3>
+<ul>
+  <li>Writes to OSTree repository: <b>6316</b> builds, occupying a mere 60GB (12TB for images)</li>
   <li>Outputs 4 variants: runtime, runtime-debug, devel, devel-debug</li>
   <li>3 stages: buildmaster, smoketested, integrated (more to come)</li>
+  <li>"zdisks" generates qcow2 images every 3 hours</li>
 </ul>
 </article>
 
@@ -122,22 +142,22 @@
 <h3>From commit to your VM</h3>
 <ul>
   <li>Push notification git.gnome.org -&gt; spinner.gnome.org [~instant]</li>
-  <li>gnome-ostree autobuilder does a "resolve" [~instant]</li>
-  <li>build creates container, runs "autogen/configure/make/make install DESTDIR" [variable]</li>
+  <li>gnome-ostree autobuilder does a "resolve" [1-2 seconds]</li>
+  <li>"build" only rebuilds changed git repos, runs clean "autogen/configure/make/make install DESTDIR" cycle [variable]</li>
   <li>Result stored in OSTree repo as e.g. "gnome-ostree/components/glib/x86_64" [seconds]</li>
   <li>Builder "unions" everything listed in manifest, generates -runtime, -devel-debug etc. trees [1-2 minutes]</li>
-  <li>You can download now</li>
+  <li>You can download now (just download changed files)</li>
 </ul>
 </article>
 
 <article>
 <h3>From build to testing</h3>
 <ul>
-  <li>"builddisks" use libguestfs to open cached disk image from the <b>host</b></li>
+  <li>"builddisks" use <a href="http://libguestfs.org/">libguestfs</a> to open cached disk image from the <b>host</b></li>
   <li>Incremental update while <b>offline</b></li>
-  <li>"smoketest" makes new overlay disk image with testing bits (autologin, export journal)</li>
-  <li>"smoketest" watches journal output on the host, checks for required/bad MESSAGE_IDs</li>
-  <li>"integrationtest" runs all installed tests</li>
+  <li>"smoketest" makes new overlay qcow2 image with testing bits (autologin, export journal)</li>
+  <li>"smoketest" watches journal output on the host, checks for required/bad MESSAGE_IDs (required: gnome-session, bad: coredump)</li>
+  <li>"integrationtest" runs <b>all</b> installed tests</li>
 </ul>
 </article>
 
