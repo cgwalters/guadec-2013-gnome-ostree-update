@@ -44,10 +44,10 @@
 <article>
 <h3>gnome-ostree high level</h3>
 <ul>
-  <li>Try git master of "core" system up to gnome-shell, plus a few apps, as a virtual guest</li>
+  <li>Try git master of "core" system up to gnome-shell, plus a few apps, as a virtual guest (that's all!)</li>
   <li>Built <b>and tested</b> continuously</li>
   <li>Over 200 git repositories (GNOME, X.org, NetworkManager, systemd, etc.)</li>
-  <li>Base system built from OpenEmbedded (periodic rebase)</li>
+  <li>Base system built from <a href="https://www.yoctoproject.org/">OpenEmbedded</a> (periodic rebase, not self hosting)</li>
   <li>Only targets <b>virtualized environments</b></li>
   <li><b>No security updates</b></li>
 </ul>
@@ -79,6 +79,7 @@
   <li>Time from commit to clean booting ~3-4 minutes, and going down</li>
   <li>Upgrades are fully atomic</li>
   <li>glib, gtk+, clutter, json-glib, ostree, gjs and more (> 350) unit-type tests under automation</li>
+  <li>gdm testing</li>
 </ul>
 </article>
 
@@ -164,13 +165,13 @@
 </article>
 
 <article>
-<h3>gnome-ostree vs jhbuild vs packages</h3>
+<h3>gnome-ostree buildsystem TODO</h3>
 <ul>
-  <li>Essential to maintain all 3</li>
-  <li>jhbuild/packages: Easy to rebuild just gtk+, glib+gtk, keep system apps</li>
-  <li>gnome-ostree/packages: Produces consumable</li>
-  <li>jhbuild/gnome-ostree: Easy to try changes without affecting system</li>
-  <li>jhbuild/gnome-ostree: Easy to wire to continuous integration</li>
+  <li>Interface ideas from <a href="http://openqa.opensuse.org/">OpenSUSE's OpenQA</a></li>
+  <li>Try servers, build patches from Bugzilla</li>
+  <li>Reliable perf metrics (RSS, disk usage, instruction count)</li>
+  <li>Automatic bisection</li>
+  <li>Live collaboration try server (gnome-shell hacker + designer)</li>
 </ul>
 </article>
 
@@ -219,11 +220,11 @@
 </article>
 
 <article>
-<h3>Future: Core Quality</h3>
+<h3>Conclusion</h3>
 <ul>
-  <li>ABI verification for GTK+ and dependency tree</li>
-  <li>Even more core testing, integrated core + app testing</li>
-  <li>Shrink the core, like sudo -> pkexec: Stub out NSPR for GLib</li>
+  <li>Iterate on core quality</li>
+  <li>Provide sane application framework (Improve FOSS, allow proprietary apps)</li>
+  <li>Maintain strong links with downstreams, and help them feed changes upstream</li>
 </ul>
 </article>
 
